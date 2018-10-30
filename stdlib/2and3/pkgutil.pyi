@@ -1,6 +1,7 @@
 # Stubs for pkgutil
 
-from typing import Any, Callable, Generator, IO, Iterable, Optional, Tuple, NamedTuple
+from types import ModuleType
+from typing import Any, Callable, Generator, IO, Iterable, Iterator, Optional, Tuple, NamedTuple
 import sys
 
 if sys.version_info >= (3,):
@@ -19,6 +20,8 @@ def extend_path(path: Iterable[str], name: str) -> Iterable[str]: ...
 
 class ImpImporter:
     def __init__(self, dirname: Optional[str] = ...) -> None: ...
+    def find_module(self, fullname: str, path: str = ...) -> Optional[ImpLoader]: ...
+    def iter_modules(self, prefix: str = ...) -> Iterator[Tuple[str, bool]]: ...
 
 class ImpLoader:
     def __init__(self, fullname: str, file: IO[str], filename: str,
